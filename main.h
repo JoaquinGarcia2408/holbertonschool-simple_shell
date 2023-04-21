@@ -8,5 +8,11 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sys/types.h>
-void tokenize_line(char *input);
+extern char **environ;
+char **tokenize_line(char *input);
+void fork_handler(char **arraycounter,char *input);
+void execute(char **array_counter,char *input);
+char *path_attacher(char *pbuffer, char **arraycounter);
+char *_get_env(char *npath);
+
 #endif

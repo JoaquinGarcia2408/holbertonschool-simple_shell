@@ -3,26 +3,32 @@ int main()
 {
 	char *input = NULL;
 	size_t len = 0;
+	ssize_t chars_read;
+	char *inputcpy = NULL;
+	char **token;
 	
 	while (1) 
 	{
 		printf("Shell > ");
-		if (getline(&input, &len, stdin) != -1)
+		chars_read = getline(&input, &len, stdin);
+		if (chars_read == -1)
+			return (-1);
+		
+		if (strcmp(input, "exit") == 0)
 		{
-			input[strlen(input)-1] = '\0'; /* deleting the \n at the end of the input*/
-			if (strcmp(input, "exit") == 0)
-			{
-				break; /* exit from bucle if imput is "exit"*/
-			}
-			tokenize_line(input); /*calling function to handle more than 1 input*/
-		} 
-		else
-		{
-			break; /* exit from bucle if getline() returns -1 (EOF)*/
+			exit(0); /* exit from bucle if imput is "exit"*/
 		}
+		inputcpy = malloc(sizeof(char) * chars_read);
+		if (inputcpy == NULL)
+		{
+			perror("Malloc error: ");
+			return (-1);
+		}
+		strcpy(inputcpy, input);
+		token = tokenize_line(input);
+		execute(token,input);
+		free(inputcpy);
+		free(input);
 	}
-	
-	free(input);
-	
 	return (0);
 }
