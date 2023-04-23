@@ -10,21 +10,21 @@ char **tokenize_line(char *input)
 {
 
 	char *token = NULL, *inputcpy = NULL, **inputarray = NULL;
-	int wordcounter = 0, arraycounter = 0, charfinder = 0;
+	int wordcounter = 0, arraycounter = 0, cfinder = 0;
 
-	while(input[charfinder])
+	while (input[cfinder])
 	{
-		if (input[charfinder] == '\t' || input[charfinder] == '\n' || input[charfinder] == ' ')
+		if (input[cfinder] == '\t' || input[cfinder] == '\n' || input[cfinder] == 32)
 		{
-			charfinder++;
-			wordcounter++;		
+			cfinder++;
+			wordcounter++;
 		}
-		charfinder++;
+		cfinder++;
 	}
 	inputarray = malloc(sizeof(char *) * (wordcounter + 1));
 	if (inputarray == NULL)
 	{
-		free (input);
+		free(input);
 		perror("Malloc error: ");
 		exit(-1);
 	}
@@ -37,8 +37,6 @@ char **tokenize_line(char *input)
 	}
 	inputarray[arraycounter] = NULL;
 	free(inputcpy);
-	/*for (i = 0; i < arraycounter; i++)
-		free(inputarray[i]);*/
 	return (inputarray);
 }
 char *_get_env(char *npath)
@@ -46,13 +44,13 @@ char *_get_env(char *npath)
 	int environcounter;
 	char *token = NULL, *buffer = NULL, *token_cpy = NULL;
 
-	if(environ == NULL)
+	if (environ == NULL)
 		return (NULL);
 	for (environcounter = 0; environ[environcounter]; environcounter++)
 	{
 		buffer = _strdup(environ[environcounter]);
 		token = strtok(buffer, "=");
-		if(buffer == NULL) 
+		if (buffer == NULL)
 		{
 			perror("Memory allocation error");
 			exit(EXIT_FAILURE);
@@ -104,7 +102,7 @@ char *path_attacher(char *pbuffer, char **arraycounter)
 void fork_handler(char **array_counter, char *input)
 {
 	int fkvalue;
-	
+
 	fkvalue = fork();
 	if (fkvalue == 0)
 	{
@@ -114,16 +112,16 @@ void fork_handler(char **array_counter, char *input)
 	{
 		wait(NULL);
 		free_grid(array_counter);
-	}	
+	}
 	if (fkvalue < 0)
 	{
-		free (input);
+		free(input);
 		free_grid(array_counter);
 		perror("Error: ");
-		
+
 	}
 }
-void execute(char **array_counter,char *input)
+void execute(char **array_counter, char *input)
 {
 	struct stat st;
 	int statchecker;
@@ -140,7 +138,7 @@ void execute(char **array_counter,char *input)
 		statchecker = stat(array_counter[0], &st);
 		if (statchecker == 0)
 			fork_handler(array_counter, input);
-		else if(statchecker == -1 || path == NULL)
+		else if (statchecker == -1 || path == NULL)
 		{
 			free_grid(array_counter);
 			perror("Error");
