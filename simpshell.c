@@ -12,11 +12,9 @@ int main()
 		printf("Shell > ");
 		chars_read = getline(&input, &len, stdin);
 		if (chars_read == -1)
-			return (-1);
-		
-		if (strcmp(input, "exit") == 0)
 		{
-			exit(0); /* exit from bucle if imput is "exit"*/
+			free(input);
+			exit(-1);
 		}
 		inputcpy = malloc(sizeof(char) * chars_read);
 		if (inputcpy == NULL)
@@ -24,11 +22,10 @@ int main()
 			perror("Malloc error: ");
 			return (-1);
 		}
-		strcpy(inputcpy, input);
+		_strcpy(inputcpy, input);
 		token = tokenize_line(input);
 		execute(token,input);
 		free(inputcpy);
-		free(input);
 	}
 	return (0);
 }
