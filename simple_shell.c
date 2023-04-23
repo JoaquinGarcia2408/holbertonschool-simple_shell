@@ -9,6 +9,7 @@ int main()
 	
 	while (1) 
 	{
+		isatty(STDIN_FILENO) == 1 ? write(1, "$ ", 2) : 0;/*if returns 1, write $, if returns 0, write nothing*/
 		printf("Shell > ");
 		chars_read = getline(&input, &len, stdin);
 		if (chars_read == -1)
