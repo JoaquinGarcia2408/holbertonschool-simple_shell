@@ -20,7 +20,6 @@ char **tokenize_line(char *input)
 	{
 		if (input[cfinder] == '\t' || input[cfinder] == '\n' || input[cfinder] == 32)
 		{
-			cfinder++;
 			wordcounter++;
 		}
 		cfinder++;
@@ -33,11 +32,11 @@ char **tokenize_line(char *input)
 		exit(-1);
 	}
 	inputcpy = _strdup(input);
-	token = strtok(inputcpy, " \t\n");
+	token = strtok(inputcpy, " \n");
 	for (arraycounter = 0; token; arraycounter++)
 	{
 		inputarray[arraycounter] = _strdup(token);
-		token = strtok(NULL, " \t\n");
+		token = strtok(NULL, " \n");
 	}
 	inputarray[arraycounter] = NULL;
 	free(inputcpy);
