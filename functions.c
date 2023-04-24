@@ -14,7 +14,7 @@ char **tokenize_line(char *input)
 {
 
 	char *token = NULL, *inputcpy = NULL, **inputarray = NULL;
-	int wordcounter = 1, arraycounter = 0, cfinder = 0;
+	int wordcounter = 0, arraycounter = 0, cfinder = 0;
 
 	while (input[cfinder])
 	{
@@ -25,7 +25,7 @@ char **tokenize_line(char *input)
 		}
 		cfinder++;
 	}
-	inputarray = malloc(sizeof(char *) * (wordcounter));
+	inputarray = malloc(sizeof(char *) * (wordcounter + 1));
 	if (inputarray == NULL)
 	{
 		free(input);
