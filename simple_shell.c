@@ -1,4 +1,8 @@
 #include "main.h"
+/**
+ * main - simple-shell
+ * Return: return -1 if fail or 0 on success
+ */
 int main(void)
 {
 	char *input = NULL;

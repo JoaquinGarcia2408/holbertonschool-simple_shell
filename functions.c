@@ -5,7 +5,11 @@
 #include <sys/wait.h>
 #include "main.h"
 
-
+/**
+ * tokenize_line - function that tokenizes arguments given by the user
+ * @input: string containing the arguments
+ * Return: array of strings containing each argument
+ */
 char **tokenize_line(char *input)
 {
 
@@ -39,6 +43,11 @@ char **tokenize_line(char *input)
 	free(inputcpy);
 	return (inputarray);
 }
+/**
+ * _get_env - search for specific word inside env
+ * @npath: word to search in env
+ * Return: return NULL if failed or pointer to path in success
+ */
 char *_get_env(char *npath)
 {
 	int environcounter;
@@ -71,6 +80,12 @@ char *_get_env(char *npath)
 	}
 	return (NULL);
 }
+/**
+ * path_attacher  - add corresponding path to the given command
+ * @arraycounter: input given in shell
+ * @pbuffer: string given by path
+ * Return: full path in success or NULL if fail
+ */
 char *path_attacher(char *pbuffer, char **arraycounter)
 {
 	struct stat st;
@@ -99,6 +114,11 @@ char *path_attacher(char *pbuffer, char **arraycounter)
 	return (arraycounter[0]);
 
 }
+/**
+ * fork_handler - fork to create a child proccess and execute a program
+ * @array_counter: input given in shell
+ * @input: string given by path
+ */
 void fork_handler(char **array_counter, char *input)
 {
 	int fkvalue;
@@ -121,6 +141,11 @@ void fork_handler(char **array_counter, char *input)
 
 	}
 }
+/**
+ * execute - checks if the first argument by the user can be executed
+ * @array_counter: input given in shell
+ * @input: string given by path
+ */
 void execute(char **array_counter, char *input)
 {
 	struct stat st;
