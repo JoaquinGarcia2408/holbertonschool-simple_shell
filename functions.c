@@ -138,7 +138,7 @@ void fork_handler(char **array_counter, char *input)
 	{
 		free(input);
 		free_grid(array_counter);
-		perror("Error: ");
+		perror("./shell");
 
 	}
 }
@@ -167,7 +167,7 @@ void execute(char **array_counter, char *input)
 		else if (statchecker == -1 || path == NULL)
 		{
 			free_grid(array_counter);
-			perror("Error");
+			perror("./shell");
 		}
 	}
 }
