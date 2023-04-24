@@ -18,9 +18,11 @@ char **tokenize_line(char *input)
 
 	while (input[cfinder])
 	{
-		if (input[cfinder] == '\t' || input[cfinder] == '\n' || input[cfinder] == 32)
+		if (input[cfinder] == 9 || input[cfinder] == 10 || input[cfinder] == 32)
 		{
+			cfinder++;
 			wordcounter++;
+			continue;
 		}
 		cfinder++;
 	}
