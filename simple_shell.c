@@ -8,35 +8,33 @@ int main(void)
 	char *input = NULL;
 	size_t len = 0;
 	ssize_t chars_read;
-	char *inputcpy = NULL;
 	char **token;
+	int count = 0, status = 0;
 
 	while (1)
 	{
+		count++;
 		isatty(STDIN_FILENO) == 1 ? write(1, "$ ", 2) : 0;
 		chars_read = getline(&input, &len, stdin);
 		if (chars_read == -1)
 		{
 			free(input);
-			exit(-1);
+			exit(status);
 		}
 		if (chars_read == 1)
 			continue;
-		if (_strcmp(input, "exit\n") == 0)
+		token = tokenize_line(input);
+		if (!token[0]) /* if first argument is " "or "\t" before tokenized */
+		{
+			free_grid(token);
+			continue;
+		}
+		if (_strcmp(token[0], "exit") == 0 && token[1] == NULL)
 		{
 			free(input);
 			break;
 		}
-		inputcpy = malloc(chars_read + 1);
-		if (inputcpy == NULL)
-		{
-			perror("Malloc error: ");
-			return (-1);
-		}
-		_strcpy(inputcpy, input);
-		token = tokenize_line(inputcpy);
-		execute(token, input);
-		free(inputcpy);
+		status = execute(token, input, count, status);
 	}
 	return (0);
 }

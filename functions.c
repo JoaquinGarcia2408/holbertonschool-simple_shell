@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include "main.h"
+#include <ctype.h>
 
 /**
  * tokenize_line - function that tokenizes arguments given by the user
@@ -18,6 +19,7 @@ char **tokenize_line(char *input)
 
 	while (input[cfinder])
 	{
+
 		if (input[cfinder] == 9 || input[cfinder] == 10 || input[cfinder] == 32)
 		{
 			cfinder++;
@@ -31,13 +33,13 @@ char **tokenize_line(char *input)
 	{
 		free(input);
 		perror("Malloc error: ");
-		exit(-1);
+		exit(0);
 	}
-	inputcpy = _strdup(input);
+	inputcpy = strdup(input);
 	token = strtok(inputcpy, " \n");
 	for (arraycounter = 0; token; arraycounter++)
 	{
-		inputarray[arraycounter] = _strdup(token);
+		inputarray[arraycounter] = strdup(token);
 		token = strtok(NULL, " \n");
 	}
 	inputarray[arraycounter] = NULL;
@@ -58,19 +60,19 @@ char *_get_env(char *npath)
 		return (NULL);
 	for (environcounter = 0; environ[environcounter]; environcounter++)
 	{
-		buffer = _strdup(environ[environcounter]);
+		buffer = strdup(environ[environcounter]);
 		token = strtok(buffer, "=");
 		if (buffer == NULL)
 		{
 			perror("Memory allocation error");
 			exit(EXIT_FAILURE);
 		}
-		if (_strcmp(token, npath) == 0)
+		if (strcmp(token, npath) == 0)
 		{
 			token = strtok(NULL, "=");
 			if (token != NULL)
 			{
-				token_cpy = _strdup(token);
+				token_cpy = strdup(token);
 
 				free(buffer);
 				return (token_cpy);
@@ -93,19 +95,19 @@ char *path_attacher(char *pbuffer, char **arraycounter)
 	size_t buffersize = 1024;
 	char *full_path = NULL, *token = NULL, *input_cpy = NULL;
 
-	input_cpy = _strdup(pbuffer);
+	input_cpy = strdup(pbuffer);
 	token = strtok(input_cpy, ":");
 	while (token != NULL)
 	{
 		full_path = malloc(buffersize);
-		_strcpy(full_path, token);
-		_strcat(full_path, "/");
-		_strcat(full_path, arraycounter[0]);
+		strcpy(full_path, token);
+		strcat(full_path, "/");
+		strcat(full_path, arraycounter[0]);
 		if (stat(full_path, &st) == 0) /*returns 0 if worked*/
 		{
 			free(input_cpy);
 			free(arraycounter[0]);
-			return (full_path);
+			return(full_path);
 		}
 
 		free(full_path);
@@ -120,9 +122,9 @@ char *path_attacher(char *pbuffer, char **arraycounter)
  * @array_counter: input given in shell
  * @input: string given by path
  */
-void fork_handler(char **array_counter, char *input)
+int fork_handler(char **array_counter, char *input, int status)
 {
-	int fkvalue;
+	pid_t fkvalue;
 
 	fkvalue = fork();
 	if (fkvalue == 0)
@@ -131,7 +133,7 @@ void fork_handler(char **array_counter, char *input)
 	}
 	else
 	{
-		wait(NULL);
+		wait(&status);
 		free_grid(array_counter);
 	}
 	if (fkvalue < 0)
@@ -141,13 +143,14 @@ void fork_handler(char **array_counter, char *input)
 		perror("./shell");
 
 	}
+	return(WEXITSTATUS(status));
 }
 /**
  * execute - checks if the first argument by the user can be executed
  * @array_counter: input given in shell
  * @input: string given by path
  */
-void execute(char **array_counter, char *input)
+int execute(char **array_counter, char *input, int status, int count)
 {
 	struct stat st;
 	int statchecker;
@@ -155,7 +158,7 @@ void execute(char **array_counter, char *input)
 
 	statchecker = stat(array_counter[0], &st);
 	if (statchecker == 0)
-		fork_handler(array_counter, input);
+		status = fork_handler(array_counter, input, status);
 	else if (statchecker == -1)
 	{
 		path = _get_env("PATH"); /*PATH has a list of dif dirs separated by : */
@@ -163,11 +166,14 @@ void execute(char **array_counter, char *input)
 		free(path);
 		statchecker = stat(array_counter[0], &st);
 		if (statchecker == 0)
-			fork_handler(array_counter, input);
+			fork_handler(array_counter, input, status);
 		else if (statchecker == -1 || path == NULL)
 		{
+			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
 			free_grid(array_counter);
-			perror("./shell");
+			status = 127;
+			return(status);
 		}
 	}
+	return(status);
 }

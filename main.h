@@ -10,8 +10,8 @@
 #include <sys/types.h>
 extern char **environ;
 char **tokenize_line(char *input);
-void fork_handler(char **arraycounter, char *input);
-void execute(char **array_counter, char *input);
+int fork_handler(char **array_counter, char *input, int status);
+int execute(char **array_counter, char *input, int status, int count);
 char *path_attacher(char *pbuffer, char **arraycounter);
 char *_get_env(char *npath);
 
