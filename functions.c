@@ -14,7 +14,7 @@ char **tokenize_line(char *input)
 {
 
 	char *token = NULL, *inputcpy = NULL, **inputarray = NULL;
-	int wordcounter = 0, arraycounter = 0, cfinder = 0;
+	int wordcounter = 1, arraycounter = 0, cfinder = 0;
 
 	while (input[cfinder])
 	{
@@ -25,7 +25,7 @@ char **tokenize_line(char *input)
 		}
 		cfinder++;
 	}
-	inputarray = malloc(sizeof(char *) * (wordcounter + 1));
+	inputarray = malloc(sizeof(char *) * (wordcounter));
 	if (inputarray == NULL)
 	{
 		free(input);
@@ -90,7 +90,7 @@ char *path_attacher(char *pbuffer, char **arraycounter)
 {
 	struct stat st;
 	size_t buffersize = 1024;
-	char *full_path = NULL, *token = NULL, *input_cpy;
+	char *full_path = NULL, *token = NULL, *input_cpy = NULL;
 
 	input_cpy = _strdup(pbuffer);
 	token = strtok(input_cpy, ":");
@@ -103,7 +103,7 @@ char *path_attacher(char *pbuffer, char **arraycounter)
 		if (stat(full_path, &st) == 0) /*returns 0 if worked*/
 		{
 			free(input_cpy);
-
+			free(arraycounter[0]);
 			return (full_path);
 		}
 

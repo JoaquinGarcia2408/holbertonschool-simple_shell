@@ -21,7 +21,7 @@ int main(void)
 			free(input);
 			exit(-1);
 		}
-		inputcpy = malloc(sizeof(char) * chars_read);
+		inputcpy = malloc(sizeof(char) * chars_read + 1);
 		if (inputcpy == NULL)
 		{
 			perror("Malloc error: ");
