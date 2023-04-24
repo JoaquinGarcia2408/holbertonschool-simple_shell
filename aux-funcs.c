@@ -10,16 +10,16 @@
 char *_strcat(char *dest, char *src)
 {
 	int i, c;
-	
+
 	for (i = 0; dest[i] != '\0'; i++)
 		;
-	
+
 	for (c = 0; src[c] != '\0'; c++)
 	{
 		dest[i] = src[c];
 		i++;
 	}
-	
+
 	dest[i] = '\0';
 	return (dest);
 }
@@ -33,7 +33,7 @@ char *_strcat(char *dest, char *src)
 int _strcmp(char *s1, char *s2)
 {
 	int length = 0;
-	
+
 	while (s1[length] && s2[length])
 	{
 		if (s1[length] != s2[length])
@@ -54,7 +54,7 @@ int _strcmp(char *s1, char *s2)
 char *_strcpy(char *dest, char *src)
 {
 	int length = 0;
-	
+
 	while (src[length])
 	{
 		dest[length] = src[length];
@@ -79,22 +79,22 @@ char *_strdup(char *str)
 {
 	int i, j;
 	char *array;
-	
+
 	if (str == NULL)
 		return (NULL);
-	
+
 	for (i = 0 ; str[i] != '\0' ; i++)
 	{
 	}
-	
+
 	array = malloc(sizeof(char) * i + 1);
-	
+
 	if (array == NULL)
 		return (NULL);
-	
+
 	for (j = 0 ; j <= i ; j++)
 		array[j] = str[j];
-	
+
 	return (array);
 }
 
