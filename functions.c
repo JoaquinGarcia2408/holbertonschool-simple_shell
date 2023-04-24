@@ -166,7 +166,7 @@ int execute(char **array_counter, char *input, int status, int count)
 		free(path);
 		statchecker = stat(array_counter[0], &st);
 		if (statchecker == 0)
-			fork_handler(array_counter, input, status);
+			status = fork_handler(array_counter, input, status);
 		else if (statchecker == -1 || path == NULL)
 		{
 			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
