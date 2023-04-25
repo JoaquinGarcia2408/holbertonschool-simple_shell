@@ -35,7 +35,7 @@ char **tokenize_line(char *input)
 		perror("Malloc error: ");
 		exit(0);
 	}
-	inputcpy = strdup(input);
+	inputcpy = _strdup(input);
 	token = strtok(inputcpy, " \n");
 	for (arraycounter = 0; token; arraycounter++)
 	{
@@ -60,19 +60,19 @@ char *_get_env(char *npath)
 		return (NULL);
 	for (environcounter = 0; environ[environcounter]; environcounter++)
 	{
-		buffer = strdup(environ[environcounter]);
+		buffer = _strdup(environ[environcounter]);
 		token = strtok(buffer, "=");
 		if (buffer == NULL)
 		{
 			perror("Memory allocation error");
 			exit(EXIT_FAILURE);
 		}
-		if (strcmp(token, npath) == 0)
+		if (_strcmp(token, npath) == 0)
 		{
 			token = strtok(NULL, "=");
 			if (token != NULL)
 			{
-				token_cpy = strdup(token);
+				token_cpy = _strdup(token);
 
 				free(buffer);
 				return (token_cpy);
@@ -95,14 +95,14 @@ char *path_attacher(char *pbuffer, char **arraycounter)
 	size_t buffersize = 1024;
 	char *full_path = NULL, *token = NULL, *input_cpy = NULL;
 
-	input_cpy = strdup(pbuffer);
+	input_cpy = _strdup(pbuffer);
 	token = strtok(input_cpy, ":");
 	while (token != NULL)
 	{
 		full_path = malloc(buffersize);
-		strcpy(full_path, token);
-		strcat(full_path, "/");
-		strcat(full_path, arraycounter[0]);
+		_strcpy(full_path, token);
+		_strcat(full_path, "/");
+		_strcat(full_path, arraycounter[0]);
 		if (stat(full_path, &st) == 0) /*returns 0 if worked*/
 		{
 			free(input_cpy);
