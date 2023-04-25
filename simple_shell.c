@@ -32,7 +32,8 @@ int main(void)
 		if (_strcmp(token[0], "exit") == 0 && token[1] == NULL)
 		{
 			free(input);
-			break;
+			free_grid(token);
+			exit(status);
 		}
 		status = execute(token, input, count, status);
 	}

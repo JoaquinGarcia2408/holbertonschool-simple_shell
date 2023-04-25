@@ -107,7 +107,7 @@ char *path_attacher(char *pbuffer, char **arraycounter)
 		{
 			free(input_cpy);
 			free(arraycounter[0]);
-			return(full_path);
+			return (full_path);
 		}
 
 		free(full_path);
@@ -121,6 +121,8 @@ char *path_attacher(char *pbuffer, char **arraycounter)
  * fork_handler - fork to create a child proccess and execute a program
  * @array_counter: input given in shell
  * @input: string given by path
+ * @status: exit code
+ * Return: 0 if works
  */
 int fork_handler(char **array_counter, char *input, int status)
 {
@@ -143,12 +145,15 @@ int fork_handler(char **array_counter, char *input, int status)
 		perror("./shell");
 
 	}
-	return(WEXITSTATUS(status));
+	return (WEXITSTATUS(status));
 }
 /**
  * execute - checks if the first argument by the user can be executed
  * @array_counter: input given in shell
  * @input: string given by path
+ * @status: store the int returned by the fork_handler function
+ * @count: would be used to fprintf in case stat fails or path = NULL
+ * Return: int
  */
 int execute(char **array_counter, char *input, int status, int count)
 {
@@ -172,8 +177,8 @@ int execute(char **array_counter, char *input, int status, int count)
 			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
 			free_grid(array_counter);
 			status = 127;
-			return(status);
+			return (status);
 		}
 	}
-	return(status);
+	return (status);
 }
