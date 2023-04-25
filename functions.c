@@ -39,7 +39,7 @@ char **tokenize_line(char *input)
 	token = strtok(inputcpy, " \n");
 	for (arraycounter = 0; token; arraycounter++)
 	{
-		inputarray[arraycounter] = strdup(token);
+		inputarray[arraycounter] = _strdup(token);
 		token = strtok(NULL, " \n");
 	}
 	inputarray[arraycounter] = NULL;
