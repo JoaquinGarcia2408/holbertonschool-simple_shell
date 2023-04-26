@@ -20,4 +20,5 @@ char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
 void free_grid(char **grid);
+void print_env(void);
 #endif
