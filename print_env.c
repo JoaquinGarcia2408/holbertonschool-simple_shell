@@ -8,12 +8,13 @@
 void print_env(void)
 {
 	int i;
+	char **env_cpy = environ;
 
-	if (!environ)
+	if (!env_cpy)
 		return;
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; env_cpy[i]; i++)
 	{
-		printf("%s\n", environ[i]);
+		printf("%s\n", env_cpy[i]);
 	}
 }
