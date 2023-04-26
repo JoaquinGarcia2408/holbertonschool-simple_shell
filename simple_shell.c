@@ -24,25 +24,29 @@ int main(void)
 		if (chars_read == 1) /* handles the \n is the only combination of 1 char*/
 			continue;
 		token = tokenize_line(input);
-		if (!token[0]) /* if first argument is " "or "\t" before tokenized */
+		if (token && token[0])
 		{
-			/*free_grid(token);*/
-			continue;
-		}
-		if (_strcmp(token[0], "exit") == 0 && token[1] == NULL) /*handles the exit*/
-		{
+			if (!token[0]) /* if first argument is " "or "\t" before tokenized */
+			{
+				/*free_grid(token);*/
+				continue;
+			}
+			if (_strcmp(token[0], "exit") == 0 && token[1] == NULL) /*handles the exit*/
+			{
+				free_grid(token);
+				free(input);
+				exit(status);
+				break;
+			}
+			if (_strcmp(token[0], "env") == 0 && token[1] == NULL) /*handles the exit*/
+			{
+				print_env();
+			}
+			status = execute(token, input, status);
 			free_grid(token);
-			free(input);
-			exit(status);
-			break;
+			/* liberar lo que gaurda token */
+		
 		}
-		if (_strcmp(token[0], "env") == 0 && token[1] == NULL) /*handles the exit*/
-                {
-                        print_env();
-                }
-		status = execute(token, input, status);
-		free_grid(token);
-		/* liberar lo que gaurda token */
 	}
-	return (0);
+		return (0);
 }
