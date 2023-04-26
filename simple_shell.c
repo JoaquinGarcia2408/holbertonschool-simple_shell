@@ -26,21 +26,23 @@ int main(void)
 		token = tokenize_line(input);
 		if (!token[0]) /* if first argument is " "or "\t" before tokenized */
 		{
-			free_grid(token);
+			/*free_grid(token);*/
 			continue;
 		}
 		if (_strcmp(token[0], "exit") == 0 && token[1] == NULL) /*handles the exit*/
 		{
-			free(input);
 			free_grid(token);
+			free(input);
 			exit(status);
+			break;
 		}
 		if (_strcmp(token[0], "env") == 0 && token[1] == NULL) /*handles the exit*/
                 {
                         print_env();
-			continue;
                 }
 		status = execute(token, input, status);
+		free_grid(token);
+		/* liberar lo que gaurda token */
 	}
 	return (0);
 }

@@ -138,7 +138,6 @@ int fork_handler(char **array_counter, char *input, int status)
 	else
 	{
 		wait(&status);
-		free_grid(array_counter);
 	}
 	if (fkvalue < 0)
 	{
@@ -177,7 +176,6 @@ int execute(char **array_counter, char *input, int status)
 		else if (statchecker == -1 || path == NULL)
 		{
 			fprintf(stderr, "./hsh: %s: command not found\n", array_counter[0]);
-			free_grid(array_counter);
 			status = 127;
 			return (status);
 		}
