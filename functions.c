@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include "main.h"
-#include <ctype.h>
 
 /**
  * tokenize_line - function that tokenizes arguments given by the user
@@ -35,21 +34,12 @@ char **tokenize_line(char *input)
 		perror("Malloc error: ");
 		exit(0);
 	}
-<<<<<<< HEAD
 	inputcpy = strdup(input);
 	token = strtok(inputcpy, " \t\n");
 	for (arraycounter = 0; token; arraycounter++)
 	{
 		inputarray[arraycounter] = strdup(token);
 		token = strtok(NULL, " \t\n");
-=======
-	inputcpy = _strdup(input);
-	token = strtok(inputcpy, " \n");
-	for (arraycounter = 0; token; arraycounter++)
-	{
-		inputarray[arraycounter] = _strdup(token);
-		token = strtok(NULL, " \n");
->>>>>>> 9cfe9f4aaead922e5b08fdb56ec0f0c29b884a39
 	}
 	inputarray[arraycounter] = NULL;
 	free(inputcpy);
