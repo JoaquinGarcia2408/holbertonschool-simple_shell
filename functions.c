@@ -36,11 +36,11 @@ char **tokenize_line(char *input)
 		exit(0);
 	}
 	inputcpy = strdup(input);
-	token = strtok(inputcpy, " \n");
+	token = strtok(inputcpy, " \t\n");
 	for (arraycounter = 0; token; arraycounter++)
 	{
 		inputarray[arraycounter] = strdup(token);
-		token = strtok(NULL, " \n");
+		token = strtok(NULL, " \t\n");
 	}
 	inputarray[arraycounter] = NULL;
 	free(inputcpy);
