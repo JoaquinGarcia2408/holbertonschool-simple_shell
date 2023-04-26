@@ -18,7 +18,7 @@ char **tokenize_line(char *input)
 
 	while (input[cfinder])
 	{
-
+		/*will check spaces \t \n to count the number of words*/
 		if (input[cfinder] == 9 || input[cfinder] == 10 || input[cfinder] == 32)
 		{
 			cfinder++;
@@ -35,8 +35,10 @@ char **tokenize_line(char *input)
 		exit(0);
 	}
 	inputcpy = strdup(input);
+/*Creates a copy of the input string and uses the strtok function to extract 
+ *first token using delimiters \t\n.returns a pointer to the first token*/
 	token = strtok(inputcpy, " \t\n");
-	for (arraycounter = 0; token; arraycounter++)
+	for (arraycounter = 0; token; arraycounter++)/*extract each subsequent token*/
 	{
 		inputarray[arraycounter] = strdup(token);
 		token = strtok(NULL, " \t\n");
@@ -66,7 +68,8 @@ char *_get_env(char *npath)
 			perror("Memory allocation error");
 			exit(EXIT_FAILURE);
 		}
-		if (_strcmp(token, npath) == 0)
+	/*Check if the token matches the given environment variable name*/
+		if (_strcmp(token, npath) == 0) 
 		{
 			token = strtok(NULL, "=");
 			if (token != NULL)
@@ -154,7 +157,7 @@ int fork_handler(char **array_counter, char *input, int status)
  * @count: would be used to fprintf in case stat fails or path = NULL
  * Return: int
  */
-int execute(char **array_counter, char *input, int status, int count)
+int execute(char **array_counter, char *input, int status)
 {
 	struct stat st;
 	int statchecker;
@@ -173,7 +176,7 @@ int execute(char **array_counter, char *input, int status, int count)
 			status = fork_handler(array_counter, input, status);
 		else if (statchecker == -1 || path == NULL)
 		{
-			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
+			fprintf(stderr, "./hsh: %s: command not found\n", array_counter[0]);
 			free_grid(array_counter);
 			status = 127;
 			return (status);

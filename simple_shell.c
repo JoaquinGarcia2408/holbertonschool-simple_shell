@@ -5,15 +5,15 @@
  */
 int main(void)
 {
-	char *input = NULL;
+	char *input = NULL, **token;
 	size_t len = 0;
 	ssize_t chars_read;
-	char **token;
 	int count = 0, status = 0;
 
 	while (1)
 	{
 		count++;
+		/*if the input is coming from a terminal will print the prompt*/
 		isatty(STDIN_FILENO) == 1 ? write(1, "$ ", 2) : 0;
 		chars_read = getline(&input, &len, stdin);
 		if (chars_read == -1)
@@ -21,7 +21,7 @@ int main(void)
 			free(input);
 			exit(status);
 		}
-		if (chars_read == 1)
+		if (chars_read == 1) /* handles the \n is the only combination of 1 char*/
 			continue;
 		token = tokenize_line(input);
 		if (!token[0]) /* if first argument is " "or "\t" before tokenized */
@@ -29,13 +29,13 @@ int main(void)
 			free_grid(token);
 			continue;
 		}
-		if (_strcmp(token[0], "exit") == 0 && token[1] == NULL)
+		if (_strcmp(token[0], "exit") == 0 && token[1] == NULL) /*handles the exit*/
 		{
 			free(input);
 			free_grid(token);
 			exit(status);
 		}
-		status = execute(token, input, count, status);
+		status = execute(token, input, status);
 	}
 	return (0);
 }
