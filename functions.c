@@ -168,6 +168,12 @@ int execute(char **array_counter, char *input, int status)
 	else if (statchecker == -1)
 	{
 		path = _get_env("PATH"); /*PATH has a list of dif dirs separated by : */
+		if (path == NULL || strcmp(path, "") == 0)
+		{
+			fprintf(stderr, "./hsh: %s: not found\n", array_counter[0]);
+			status = 127;
+			return status;
+		}
 		array_counter[0] = path_attacher(path, array_counter);
 		free(path);
 		statchecker = stat(array_counter[0], &st);
