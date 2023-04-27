@@ -14,19 +14,22 @@ char **tokenize_line(char *input)
 {
 
 	char *token = NULL, *inputcpy = NULL, **inputarray = NULL;
-	int wordcounter = 0, arraycounter = 0, cfinder = 0;
+	int wordcounter = 0, arraycounter = 0, cfinder = 0, nonspace = 0;
 
 	while (input[cfinder])
 	{
-		/*will check spaces \t \n to count the number of words*/
 		if (input[cfinder] == 9 || input[cfinder] == 10 || input[cfinder] == 32)
 		{
 			cfinder++;
 			wordcounter++;
 			continue;
 		}
+		if (input[cfinder] != 9 && input[cfinder] != 10 && input[cfinder] != 32)
+			nonspace++;
 		cfinder++;
 	}
+	if (nonspace == 0)
+		return (NULL);
 	inputarray = malloc(sizeof(char *) * (wordcounter + 1));
 	if (inputarray == NULL)
 	{
@@ -35,8 +38,6 @@ char **tokenize_line(char *input)
 		exit(0);
 	}
 	inputcpy = strdup(input);
-/*Creates a copy of the input string and uses the strtok function to extract*/
- /*first token using delimiters \t\n.returns a pointer to the first token*/
 	token = strtok(inputcpy, " \t\n");
 	for (arraycounter = 0; token; arraycounter++)/*extract each subsequent token*/
 	{
@@ -44,6 +45,8 @@ char **tokenize_line(char *input)
 		token = strtok(NULL, " \t\n");
 	}
 	inputarray[arraycounter] = NULL;
+	if (nonspace == 0)
+		free_grid(inputarray);
 	free(inputcpy);
 	return (inputarray);
 }
