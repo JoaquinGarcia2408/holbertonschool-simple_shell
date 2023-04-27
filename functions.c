@@ -169,6 +169,8 @@ int execute(char **array_counter, char *input, int status, int count)
 		status = fork_handler(array_counter, input, status);
 	else if (statchecker == -1)
 	{
+		if (!_get_env("PATH"))
+			return (status);
 		path = _get_env("PATH"); /*PATH has a list of dif dirs separated by : */
 		if (path == NULL || strcmp(path, "") == 0)
 		{
