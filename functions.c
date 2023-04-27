@@ -155,7 +155,7 @@ int fork_handler(char **array_counter, char *input, int status)
  * @count: would be used to fprintf in case stat fails or path = NULL
  * Return: int
  */
-int execute(char **array_counter, char *input, int status)
+int execute(char **array_counter, char *input, int status, int count)
 {
 	struct stat st;
 	int statchecker;
@@ -169,7 +169,7 @@ int execute(char **array_counter, char *input, int status)
 		path = _get_env("PATH"); /*PATH has a list of dif dirs separated by : */
 		if (path == NULL || strcmp(path, "") == 0)
 		{
-			fprintf(stderr, "./hsh: %s: not found\n", array_counter[0]);
+			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
 			status = 127;
 			return status;
 		}
