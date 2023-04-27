@@ -180,7 +180,7 @@ int execute(char **array_counter, char *input, int status, int count)
 			status = fork_handler(array_counter, input, status);
 		else if (statchecker == -1 || path == NULL)
 		{
-			fprintf(stderr, "./hsh: %s: command not found\n", array_counter[0]);
+			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
 			status = 127;
 			return (status);
 		}
