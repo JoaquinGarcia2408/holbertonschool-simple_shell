@@ -39,8 +39,7 @@ int main(void)
 			}
 			else
 			{
-			status = execute(token, input, status);
-			free_grid(token);
+				status = execute(token, input, status);
 			}
 			free_grid(token);
 		}
