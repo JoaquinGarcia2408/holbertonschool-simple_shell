@@ -36,6 +36,7 @@ int main(void)
 			if (_strcmp(token[0], "env") == 0 && token[1] == NULL) /*handles the env*/
 			{
 				print_env();
+				continue;
 			}
 			status = execute(token, input, status);
 			free_grid(token);	
