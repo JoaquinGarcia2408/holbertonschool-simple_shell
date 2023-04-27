@@ -37,9 +37,11 @@ int main(void)
 			{
 				print_env();
 			}
+			else
+			{
 			status = execute(token, input, status);
-			if (token)
-			free_grid(token);	
+			free_grid(token);
+			}
 		}
 		else
 			continue;
