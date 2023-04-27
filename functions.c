@@ -172,6 +172,7 @@ int execute(char **array_counter, char *input, int status, int count)
 		path = _get_env("PATH"); /*PATH has a list of dif dirs separated by : */
 		if (path == NULL || strcmp(path, "") == 0)
 		{
+
 			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
 			status = 127;
 			return (status);
@@ -187,8 +188,12 @@ int execute(char **array_counter, char *input, int status, int count)
 			status = 127;
 			return (status);
 		}
-		 if (!_get_env("PATH"))
-			                         return (status);
+		if (_get_env("PATH") == NULL)
+		{
+			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
+			status = 127;
+			return (status);
+		}
 	}
 	return (status);
 }
