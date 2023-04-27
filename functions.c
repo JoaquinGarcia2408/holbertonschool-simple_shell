@@ -79,7 +79,6 @@ char *_get_env(char *npath)
 				free(buffer);
 				return (token_cpy);
 			}
-			free(buffer);
 		}
 		free(buffer);
 	}
