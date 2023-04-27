@@ -12,16 +12,11 @@ int main(void)
 
 	while (1)
 	{
-		count++;
-		/*if the input is coming from a terminal will print the prompt*/
+		count++;/*if input is coming from terminal prnt the prompt*/
 		isatty(STDIN_FILENO) == 1 ? write(1, "$ ", 2) : 0;
 		chars_read = getline(&input, &len, stdin);
-		if (chars_read == -1)
-		{
-			free(input);
-			exit(status);
-		}
-		if (chars_read == 1) /* handles the \n is the only combination of 1 char*/
+		chars_read == -1 ? (free(input), exit(status)) : (void)0;
+		if (chars_read == 1) /*\n the only comb of 1 char*/
 			continue;
 		token = tokenize_line(input);
 		if (token && token[0])
@@ -31,7 +26,6 @@ int main(void)
 				free_grid(token);
 				free(input);
 				exit(status);
-				break;
 			}
 			if (_strcmp(token[0], "env") == 0 && token[1] == NULL) /*handles the env*/
 			{

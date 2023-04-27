@@ -35,8 +35,8 @@ char **tokenize_line(char *input)
 		exit(0);
 	}
 	inputcpy = strdup(input);
-/*Creates a copy of the input string and uses the strtok function to extract 
- *first token using delimiters \t\n.returns a pointer to the first token*/
+/*Creates a copy of the input string and uses the strtok function to extract*/
+ /*first token using delimiters \t\n.returns a pointer to the first token*/
 	token = strtok(inputcpy, " \t\n");
 	for (arraycounter = 0; token; arraycounter++)/*extract each subsequent token*/
 	{
@@ -69,7 +69,7 @@ char *_get_env(char *npath)
 			exit(EXIT_FAILURE);
 		}
 	/*Check if the token matches the given environment variable name*/
-		if (_strcmp(token, npath) == 0) 
+		if (_strcmp(token, npath) == 0)
 		{
 			token = strtok(NULL, "=");
 			if (token != NULL)
@@ -171,7 +171,7 @@ int execute(char **array_counter, char *input, int status, int count)
 		{
 			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
 			status = 127;
-			return status;
+			return (status);
 		}
 		array_counter[0] = path_attacher(path, array_counter);
 		free(path);
