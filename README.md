@@ -54,9 +54,10 @@ Only use the following functions and system calls:
    <li> write (man 2 write)</li>
 </ul>
 <h1> Compilation </h1>
-Compilation must be using this flags
+Compilation must be using this flags:
+
 <code>
-gcc -Wall -Wextra -Werror -pedantic -g *.c -o hsh
+ gcc -Wall -Wextra -Werror -pedantic -g *.c -o hsh
 </code>
 You could add -g to test with valgrind flags
 <h1> Testing </h1>
