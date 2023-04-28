@@ -41,7 +41,7 @@ Only use the following functions and system calls:
    <li> sprintf (man 3 sprintf)</li>
    <li> putchar (man 3 putchar)</li>
    <li> read (man 2 read)</li>
-   <li> readdir (man 3 readdir</li>)
+   <li> readdir (man 3 readdir)</li>
    <li> signal (man 2 signal)</li>
    <li> stat (__xstat) (man 2 stat)</li>
    <li> lstat (__lxstat) (man 2 lstat)</li>
@@ -82,7 +82,7 @@ $ cat test_ls_2 | ./hsh
 hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 $
-´´´ruby
+
 <h1> File Description</h1>
 <h2> functions.c </h2>
 <ul>
@@ -92,7 +92,7 @@ $
 <li> fork_handler - Fork to create a child proccess and execute a program </li>
 <li> execute </li>
 </ul>
-<h2> print_env </h2> - Print enviroment
+<h2> print_env </h2> - <h3>Print enviroment</h3>
 <h2> main.h </h2> - this is the header file, all the Libraries and prototypes that we used in the shell
 <h2> simpleshell.c</h2> - Contains the main function that runs the simple shell
 <h2> auxf2.c </h2>
@@ -100,7 +100,7 @@ $
 <li> free_grid - Frees a 2 dimensional grid </li>
 </ul>
 <h1> Flowchar </h1>
-´´´
+
 
 
 
