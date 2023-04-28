@@ -61,16 +61,16 @@ gcc -Wall -Wextra -Werror -pedantic -g *.c -o hsh
 You could add -g to test with valgrind flags
 <h1> Testing </h1>
 Your shell should work like this in interactive mode:
-<code>
+
 $ ./hsh                        
 ($) /bin/ls                    
 hsh main.c shell.c             
 ($)                            
 ($) exit                       
 $                              
-</code>
+
 But also in non-interactive mode:
-<code>
+
 $ echo "/bin/ls" | ./hsh
 hsh main.c shell.c test_ls_2
 $
@@ -92,9 +92,12 @@ $
 <li> fork_handler - Fork to create a child proccess and execute a program </li>
 <li> execute </li>
 </ul>
-<h2> print_env </h2> - <h3>Print enviroment</h3>
-<h2> main.h </h2> - this is the header file, all the Libraries and prototypes that we used in the shell
-<h2> simpleshell.c</h2> - Contains the main function that runs the simple shell
+<h2> print_env </h2> 
+print_env - Print enviroment
+<h2> main.h </h2> 
+main.h - this is the header file, all the Libraries and prototypes that we used in the shell
+<h2> simpleshell.c </h2> 
+simpleshell.c - Contains the main function that runs the simple shell
 <h2> auxf2.c </h2>
 <ul>
 <li> free_grid - Frees a 2 dimensional grid </li>
