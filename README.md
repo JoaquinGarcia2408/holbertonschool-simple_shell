@@ -62,14 +62,17 @@ You could add -g to test with valgrind flags
 <h1> Testing </h1>
 Your shell should work like this in interactive mode:
 
+```ruby
 $ ./hsh                        
 ($) /bin/ls                    
 hsh main.c shell.c             
 ($)                            
 ($) exit                       
 $                              
-
+```
 But also in non-interactive mode:
+
+```ruby
 
 $ echo "/bin/ls" | ./hsh
 hsh main.c shell.c test_ls_2
@@ -82,7 +85,7 @@ $ cat test_ls_2 | ./hsh
 hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 $
-
+```
 <h1> File Description</h1>
 <h2> functions.c </h2>
 <ul>
@@ -102,7 +105,7 @@ simpleshell.c - Contains the main function that runs the simple shell
 <ul>
 <li> free_grid - Frees a 2 dimensional grid </li>
 </ul>
-<h1> Flowchar </h1>
+<h1> Flowchart </h1>
 
 
 
