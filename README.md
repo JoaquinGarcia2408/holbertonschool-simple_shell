@@ -107,4 +107,4 @@ simpleshell.c - Contains the main function that runs the simple shell
 <li> free_grid - Frees a 2 dimensional grid </li>
 </ul>
 <h1> Flowchart </h1>
-<img src="[https://user-images.githubusercontent.com/124267664/235266971-e2a9a4c4-ba40-436f-86e9-fbcfd7338ce2.png">
+<img src="https://user-images.githubusercontent.com/124267664/235266971-e2a9a4c4-ba40-436f-86e9-fbcfd7338ce2.png">
