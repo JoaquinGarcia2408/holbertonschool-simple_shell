@@ -82,14 +82,14 @@ $ cat test_ls_2 | ./hsh
 hsh main.c shell.c test_ls_2
 hsh main.c shell.c test_ls_2
 $
-</code>
+´´´ruby
 <h1> File Description</h1>
 <h2> functions.c </h2>
 <ul>
 <li> tokenize_line function that - Tokenizes arguments given by the user </li> 
-<li> _get_env - Search for specific word inside env <li>
+<li> _get_env - Search for specific word inside env </li>
 <li> path_attacher - Add corresponding path to the given command </li>
-<li> fork_handler - Fork to create a child proccess and execute a program <li>
+<li> fork_handler - Fork to create a child proccess and execute a program </li>
 <li> execute </li>
 </ul>
 <h2> print_env </h2> - Print enviroment
@@ -97,10 +97,10 @@ $
 <h2> simpleshell.c</h2> - Contains the main function that runs the simple shell
 <h2> auxf2.c </h2>
 <ul>
-<li> free_grid </li> - Frees a 2 dimensional grid
+<li> free_grid - Frees a 2 dimensional grid </li>
 </ul>
 <h1> Flowchar </h1>
-
+´´´
 
 
 
