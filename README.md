@@ -19,7 +19,7 @@ Only use the following functions and system calls:
    <li>access (man 2 access)</li>
    <li> chdir (man 2 chdir)</li>
    <li> close (man 2 close)</li>
-   <li> closedir (man 3 closedir</li>)
+   <li> closedir (man 3 closedir)</li>
    <li> execve (man 2 execve)</li>
    <li> exit (man 3 exit)</li>
    <li> _exit (man 2 _exit)</li>
@@ -33,7 +33,7 @@ Only use the following functions and system calls:
    <li> kill (man 2 kill)</li>
    <li> malloc (man 3 malloc)</li>
    <li> open (man 2 open)</li>
-   <li> opendir (man 3 opendir</li>)
+   <li> opendir (man 3 opendir)</li>
    <li> perror (man 3 perror)</li>
    <li> printf (man 3 printf)</li>
    <li> fprintf (man 3 fprintf)</li>
@@ -43,12 +43,12 @@ Only use the following functions and system calls:
    <li> read (man 2 read)</li>
    <li> readdir (man 3 readdir</li>)
    <li> signal (man 2 signal)</li>
-   <li> stat (__xstat) (man 2 stat</li>)
+   <li> stat (__xstat) (man 2 stat)</li>
    <li> lstat (__lxstat) (man 2 lstat)</li>
    <li> fstat (__fxstat) (man 2 fstat)</li>
    <li> strtok (man 3 strtok)</li>
    <li> wait (man 2 wait)</li>
-   <li> waitpid (man 2 waitpid</li>)
+   <li> waitpid (man 2 waitpid)</li>
    <li> wait3 (man 2 wait3)</li>
    <li> wait4 (man 2 wait4)</li>
    <li> write (man 2 write)</li>
@@ -62,12 +62,12 @@ You could add -g to test with valgrind flags
 <h1> Testing </h1>
 Your shell should work like this in interactive mode:
 <code>
-$ ./hsh
-($) /bin/ls
-hsh main.c shell.c
-($)
-($) exit
-$
+$ ./hsh                        
+($) /bin/ls                    
+hsh main.c shell.c             
+($)                            
+($) exit                       
+$                              
 </code>
 But also in non-interactive mode:
 <code>
@@ -92,7 +92,7 @@ $
 <li> fork_handler - Fork to create a child proccess and execute a program <li>
 <li> execute </li>
 </ul>
-<h2> print_env <h2> - Print enviroment
+<h2> print_env </h2> - Print enviroment
 <h2> main.h </h2> - this is the header file, all the Libraries and prototypes that we used in the shell
 <h2> simpleshell.c</h2> - Contains the main function that runs the simple shell
 <h2> auxf2.c </h2>
