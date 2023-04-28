@@ -12,7 +12,7 @@ A simple shell program is a program that provides a basic command-line interface
 <li>All your header files should be include guarded</li>
 <li>Use system calls only when you need to</li>
 </ul>
-Only use the following functions and system calls:
+<h3> Only use the following functions and system calls:</h3>
 
 <ul>
    <li> all functions from strings.h</li>
@@ -107,7 +107,4 @@ simpleshell.c - Contains the main function that runs the simple shell
 <li> free_grid - Frees a 2 dimensional grid </li>
 </ul>
 <h1> Flowchart </h1>
-
-
-
-
+![imagen](https://user-images.githubusercontent.com/124267664/235266593-1efc6dea-b0c6-408f-9415-b3a82b542c77.png)
