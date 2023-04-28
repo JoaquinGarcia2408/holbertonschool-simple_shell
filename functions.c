@@ -188,12 +188,6 @@ int execute(char **array_counter, char *input, int status, int count)
 			status = 127;
 			return (status);
 		}
-		if (_get_env("PATH") == NULL)
-		{
-			fprintf(stderr, "./hsh: %i: %s: not found\n", count, array_counter[0]);
-			status = 127;
-			return (status);
-		}
 	}
 	return (status);
 }
