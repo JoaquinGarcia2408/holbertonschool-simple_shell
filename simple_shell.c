@@ -21,13 +21,13 @@ int main(void)
 		token = tokenize_line(input);
 		if (token && token[0])
 		{
-			if (_strcmp(token[0], "exit") == 0 && token[1] == NULL) /*handles the exit*/
+			if (strcmp(token[0], "exit") == 0 && token[1] == NULL) /*handles the exit*/
 			{
 				free_grid(token);
 				free(input);
 				exit(status);
 			}
-			if (_strcmp(token[0], "env") == 0 && token[1] == NULL) /*handles the env*/
+			if (strcmp(token[0], "env") == 0 && token[1] == NULL) /*handles the env*/
 			{
 				print_env();
 			}

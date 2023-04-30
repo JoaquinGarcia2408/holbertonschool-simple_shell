@@ -64,7 +64,7 @@ char *_get_env(char *npath)
 		return (NULL);
 	for (environcounter = 0; environ[environcounter]; environcounter++)
 	{
-		buffer = _strdup(environ[environcounter]);
+		buffer = strdup(environ[environcounter]);
 		token = strtok(buffer, "=");
 		if (buffer == NULL)
 		{
@@ -72,12 +72,12 @@ char *_get_env(char *npath)
 			exit(EXIT_FAILURE);
 		}
 	/*Check if the token matches the given environment variable name*/
-		if (_strcmp(token, npath) == 0)
+		if (strcmp(token, npath) == 0)
 		{
 			token = strtok(NULL, "=");
 			if (token != NULL)
 			{
-				token_cpy = _strdup(token);
+				token_cpy = strdup(token);
 
 				free(buffer);
 				return (token_cpy);
@@ -99,14 +99,14 @@ char *path_attacher(char *pbuffer, char **arraycounter)
 	size_t buffersize = 1024;
 	char *full_path = NULL, *token = NULL, *input_cpy = NULL;
 
-	input_cpy = _strdup(pbuffer);
+	input_cpy = strdup(pbuffer);
 	token = strtok(input_cpy, ":");
 	while (token != NULL)
 	{
 		full_path = malloc(buffersize);
-		_strcpy(full_path, token);
-		_strcat(full_path, "/");
-		_strcat(full_path, arraycounter[0]);
+		strcpy(full_path, token);
+		strcat(full_path, "/");
+		strcat(full_path, arraycounter[0]);
 		if (stat(full_path, &st) == 0) /*returns 0 if worked*/
 		{
 			free(input_cpy);
